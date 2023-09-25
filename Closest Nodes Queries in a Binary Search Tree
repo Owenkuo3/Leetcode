@@ -1,0 +1,41 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorder(self, root):
+        if root:
+            self.inorder(root.left)
+            self.A.append(root.val)
+            self.inorder(root.right)
+            
+    
+    def closestNodes(self, root: Optional[TreeNode], queries: List[int]) -> List[List[int]]:
+        self.A = []
+
+        self.inorder(root)
+        
+        net = set(self.A)
+        
+        # print(self.A)
+        ans = []
+        
+        for q in queries:
+            if q in net:
+                k = [q, q]
+                ans.append(k)
+            else:
+                i = bisect.bisect_right(self.A, q)
+                maxi, mini = -1, -1
+                if i < len(self.A):
+                    maxi = self.A[i]
+                
+                j = bisect.bisect_left(self.A, q)
+                if j > 0:
+                    mini = self.A[j - 1]
+
+                ans.append([mini, maxi])
+        
+        return ans
