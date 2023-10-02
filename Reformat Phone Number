@@ -1,0 +1,17 @@
+class Solution:
+    def reformatNumber(self, number: str) -> str:
+        count = 0
+        ans = []
+        
+        for i in number:
+            if i == ' ' or i == '-':
+                continue
+            ans.append(i)
+            count += 1
+            if count % 3 == 0:
+                ans.append('-')
+        if ans[-1] == '-':
+            ans.pop()
+        if count % 3 == 1 and count > 1:
+            ans[-2], ans[-3] = ans[-3], ans[-2]
+        return ''.join(ans)
