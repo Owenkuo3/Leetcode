@@ -1,0 +1,12 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        a = 0
+        b = len(nums)
+        for i in range(b):
+            if nums[i] >= target:
+                a = i
+                break
+            elif target > nums[i] and b == i+1:
+                a = i+1
+                break
+        return a
