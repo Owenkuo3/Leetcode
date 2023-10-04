@@ -30,3 +30,11 @@ class Solution:
                     right = mid - 1
 
         return -1
+
+----------------------------------------------------------------------
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        try:
+            return nums.index(target)
+        except ValueError:
+            return -1
