@@ -1,0 +1,13 @@
+class Solution:
+    def canSplitArray(self, nums: List[int], m: int) -> bool:
+        i = 0
+        if len(nums) < 3:
+            return True
+        while i+1 < len(nums):
+            if m == nums[i+1]:
+                return True
+            elif m <= nums[i] + nums[i+1]:
+                return True
+            else:
+                i += 1
+        return False
