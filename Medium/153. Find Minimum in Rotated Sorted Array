@@ -1,0 +1,14 @@
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        nums = list(nums)
+        return min(nums)
+
+
+# 第二種解法
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        a = []
+        for i in nums:
+            a.append(i)
+            
+        return min(a)
