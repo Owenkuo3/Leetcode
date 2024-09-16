@@ -1,0 +1,29 @@
+
+# dictionary 
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        counts = {}
+        for num in nums:
+            if num in counts:
+                counts[num] += 1
+            else:
+                counts[num] = 1
+            
+            if counts[num] > len(nums) // 2:
+                return num
+
+#candidate
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        candidate = None
+        count = 0
+
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += 1 if num == candidate else -1
+
+        return candidate
+
+# count次數只是用來控制迴圈 最後candidate一定是出現次數最多的人
