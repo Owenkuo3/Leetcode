@@ -1,0 +1,26 @@
+# 此題用了遞迴概念，且電腦的TreeNode會從0，也就是最上層的根結點開始
+# 如果此不是葉子（意指他有孩子） 往左邊先計算，有幾層就下幾層，會不斷呼叫evaluateTree去遞迴
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def evaluateTree(self, root: TreeNode) -> bool:
+        # 1. 判斷是否為葉子節點（沒有左右子節點）
+        if root.left is None and root.right is None:
+            # 葉子節點的值為 1 代表 True，0 代表 False
+            return root.val == 1
+        
+        # 2. 如果不是葉子，代表它是運算子節點。
+        # 我們「往下看」，叫遞迴函式去幫我們算好左右子樹的布林值
+        left_result = self.evaluateTree(root.left)
+        right_result = self.evaluateTree(root.right)
+        
+        # 3. 根據目前的運算子（2 代表 OR，3 代表 AND）進行比對並回傳
+        if root.val == 2:
+            return left_result or right_result
+        elif root.val == 3:
+            return left_result and right_result
